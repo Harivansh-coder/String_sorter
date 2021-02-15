@@ -1,66 +1,36 @@
-# List to string converter function
-def convert(a):
-    b = ""
-    for i in a:
-        b+=i
-    
-    return b
 
 # String Sorting function
-def sorter(a):
-    for i in range(len(a)-1,0,-1):
+def sorter(a, mode):
+    for i in range(len(a)-1, 0, -1):
         for j in range(i):
-            if a[j]>a[j+1]:
-                temp = a[j]
-                a[j] = a[j+1]
-                a[j+1] = temp
-    
+            if mode == "asc":
+                if a[j] > a[j+1]:
+                    a[j], a[j+1] = a[j+1], a[j]
+            else:
+                if a[j] < a[j+1]:
+                    a[j], a[j+1] = a[j+1], a[j]
 
 
-
-
-#String input
-print("Enter your string: ",end='')
+# String input
+print("Enter your string: ", end='')
 a = input()
-a=a.lower()
-b = list(a)
+a = a.lower()
 
-
-
-
-
-
-sorter(b)
-
-
-
-print(b)
+# converting string to list for manipulation
+a = list(a)
 
 # Ascending or descending condition
-print("Ascending or descending (A/D): ",end='')
-c = input()
-
-
-e =""
-
-# Ascending and descending implementation
-while len(e) == 0: 
-    if (c == 'A' or c == 'a'):
-        b=convert(b)
-        print(b)
-        e+='A'
-
-    elif (c == 'D' or c == 'd'):
-
-        d = []
-        i = len(b)-1
-        while i >= 0:
-            d.append(b[i])
-            i-=1
-        d=convert(d)
-        print(d)
-        e+='D'
-
+while True:
+    print("Ascending or descending (A/D): ", end='')
+    c = input()
+    if c in ['a', 'A']:
+        sorter(a, "asc")
+        break
+    elif c in ['d', 'D']:
+        sorter(a, "desc")
+        break
     else:
-        print("invalid input")
+        print("Invalid Input")
 
+# Converting list back to string and printing the sorted
+print("".join(a))
