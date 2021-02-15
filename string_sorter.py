@@ -3,19 +3,20 @@ def convert(a):
     b = ""
     for i in a:
         b+=i
+    
     return b
-
 
 # String Sorting function
 def sorter(a):
-    b = []
+    for i in range(len(a)-1,0,-1):
+        for j in range(i):
+            if a[j]>a[j+1]:
+                temp = a[j]
+                a[j] = a[j+1]
+                a[j+1] = temp
     
-    for i in a:
-        j=0
-        while i < a[j]:
-            b.append(i)
-            j+=1
-    return b
+
+
 
 
 #String input
@@ -24,8 +25,16 @@ a = input()
 a=a.lower()
 b = list(a)
 
-b = sorted(b)
 
+
+
+
+
+sorter(b)
+
+
+
+print(b)
 
 # Ascending or descending condition
 print("Ascending or descending (A/D): ",end='')
