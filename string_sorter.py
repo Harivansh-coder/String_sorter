@@ -1,66 +1,54 @@
-# List to string converter function
-def convert(a):
-    b = ""
-    for i in a:
-        b+=i
-    
-    return b
+"""
+Following function sorts the characters of the string.
+It takes two parameters, first the string itself and second 1 or 0 (ascending or descending).   
+It has a worst case time complexity of O(n**2)
+"""
 
 # String Sorting function
-def sorter(a):
-    for i in range(len(a)-1,0,-1):
-        for j in range(i):
-            if a[j]>a[j+1]:
-                temp = a[j]
-                a[j] = a[j+1]
-                a[j+1] = temp
+def sortString(string_val, order):
+    string_val=list(string_val.lower())
+    result = ""
+
+    # for string to be sorted in ascending order
+    if order == 1:
+        for i in range(1,len(string_val)):
+            temp = string_val[i]
+            j = i - 1
+            while j >= 0 and string_val[j] > temp:
+                string_val[j+1] = string_val[j]
+                j -= 1
+            string_val[j+1] = temp
+
+    # for string to be sorted in descending order
+    elif order == 0:
+        for i in range(1,len(string_val)):
+            temp = string_val[i]
+            j = i - 1
+            while j >= 0 and string_val[j] < temp:
+                string_val[j+1] = string_val[j]
+                j -= 1
+            string_val[j+1] = temp
+
+    for i in string_val:
+        result += i
     
+    return result
 
-
-
-
+    
 #String input
-print("Enter your string: ",end='')
-a = input()
-a=a.lower()
-b = list(a)
+a = input("Enter the string: ")
 
+#function call
+print(sortString(a,1))
 
+"""
+#OUTPUT
+Enter the string: ncjndjncdnnv
+ccddjjnnnnnv
 
+Enter the string: dcbaabca
+aaabbccd
 
+"""
 
-
-sorter(b)
-
-
-
-print(b)
-
-# Ascending or descending condition
-print("Ascending or descending (A/D): ",end='')
-c = input()
-
-
-e =""
-
-# Ascending and descending implementation
-while len(e) == 0: 
-    if (c == 'A' or c == 'a'):
-        b=convert(b)
-        print(b)
-        e+='A'
-
-    elif (c == 'D' or c == 'd'):
-
-        d = []
-        i = len(b)-1
-        while i >= 0:
-            d.append(b[i])
-            i-=1
-        d=convert(d)
-        print(d)
-        e+='D'
-
-    else:
-        print("invalid input")
 
